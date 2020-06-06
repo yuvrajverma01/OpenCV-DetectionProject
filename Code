@@ -1,0 +1,160 @@
+# Face, Eye and Full Body Detection using OpenCV and Python
+
+# Import Libraries
+import cv2
+import numpy as np
+import matplotlib.pyplot as plt
+
+print("What type of detection woul you like to perform?\n1. Face Detection\n2. Eye Detection\n3. Face and Eye "
+      "Detection\n4. Full Body Detection\n") 
+type_of_det = int(input("Enter Your Choice: "))
+a = 0
+b = 0
+while a == 1:
+    if 1 <= type_of_det <=4:
+        a = 0
+    else:
+        a = 1
+        print("Incorrect Choice!")
+        type_of_det = int(input("Enter Your Choice Again: "))
+
+type_of_file = int(input("What type of file you would like to use?\n1. Image (.jpg only)\n2. Video (.mp4 only)\n"))
+while b == 1:
+    if 1 <= type_of_file <= 2:
+        b = 0
+    else:
+        b = 1
+        print("Incorrect Choice!")
+        type_of_file = int(input("Enter Your Choice Again: "))
+
+if type_of_file == 1:
+    path = input("Enter name of the file (add .jpg after the name): ")
+else:
+    path = input("Enter name of the file (add .mp4 after the name): ")
+
+# Face Classifier
+face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
+# Eye Classifier
+eye_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_eye.xml')
+# Body Classifier
+body_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_fullbody.xml')
+
+if type_of_file == 1:
+    if type_of_det == 1:
+        # Open Image
+        image = cv2.imread('Images/' + path)
+        fix_img = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+        # Detect Faces
+        faces = face_cascade.detectMultiScale(image, 1.3, 5)
+        # No Faces Detected
+        if faces is ():
+            print("No face is detected!")
+        # Main Function
+        def detect_face(fix_img):
+            face_rects = face_cascade.detectMultiScale(fix_img)
+            for (x, y, w, h) in face_rects:
+                cv2.rectangle(fix_img, (x, y), (x + w, y + h), (25, 125, 225), 5)
+            return fix_img
+        # Display Results
+        result = detect_face(fix_img)
+        plt.imshow(result)
+    elif type_of_det == 2:
+        # Open Image
+        image = cv2.imread('Images/' + path)
+        fix_img = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+        # Main Function
+        def detect_eyes(fix_img):
+            eye_rects = eye_cascade.detectMultiScale(fix_img)
+            for (x, y, w, h) in eye_rects:
+                cv2.rectangle(fix_img, (x, y), (x + w, y + h), (25, 125, 225), 5)
+            return fix_img
+        # Display Results
+        result = detect_eyes(fix_img)
+        plt.imshow(result)
+    elif type_of_det == 3:
+        # Open Image
+        image = cv2.imread('Images/' + path)
+        fix_img = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+        # Detect Faces
+        faces = face_cascade.detectMultiScale(image, 1.3, 5)
+        # No Faces Detected
+        if faces is ():
+            print("No face is detected!")
+        # Main Function
+        def detect_face_eyes(fix_img):
+            face_rects = face_cascade.detectMultiScale(fix_img)
+            eye_rects = eye_cascade.detectMultiScale(fix_img)
+            for (x, y, w, h) in face_rects:
+                cv2.rectangle(fix_img, (x, y), (x + w, y + h), (255, 0, 0), 7)
+            for (ix, iy, iw, ih) in face_rects:
+                cv2.rectangle(fix_img, (ix, iy), (ix + iw, iy + ih), (0, 0, 255), 5)
+            return fix_img
+        # Display Results
+        result = detect_face_eyes(fix_img)
+        plt.imshow(result)
+    else:
+        # Open Image
+        image = cv2.imread('Images/' + path)
+        fix_img = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+        # Main Function
+        def detect_body(fix_img):
+            body_rects = body_cascade.detectMultiScale(fix_img)
+            for (x, y, w, h) in body_rects:
+                cv2.rectangle(fix_img, (x, y), (x + w, y + h), (25, 125, 225), 5)
+            return fix_img
+        # Display Results
+        result = detect_body(fix_img)
+        plt.imshow(result)
+else:
+    if type_of_det == 1:
+        # Open Video
+        video = cv2.VideoCapture('Video/' + path)
+        # While Loop
+        while video.isOpened():
+            # Read the capture
+            ret, frame = video.read()
+            # Pass the Frame to the Classifier
+            faces = face_cascade.detectMultiScale(frame, 1.3, 5)
+            # if Statement
+            if ret == True:
+                # Bound Boxes to Identified Bodies
+                for (x, y, w, h) in faces:
+                    cv2.rectangle(frame, (x, y), (x + w, y + h), (25, 125, 225), 5)
+                    cv2.imshow('Video Playing', frame)
+                # Exit with Esc button
+                if cv2.waitKey(1) == 27:
+                    break
+            # else Statement
+            else:
+                break
+        # Release the Capture & Destroy All Windows
+        video.release()
+        cv2.destroyAllWindows()
+    elif type_of_det == 2:
+        print("Work In Progress! Sorry For Inconvenience!")
+    elif type_of_det == 3:
+        print("Work In Progress! Sorry For Inconvenience!")
+    else:
+        # Open Video
+        video = cv2.VideoCapture('Video/' + path)
+        # While Loop
+        while video.isOpened():
+            # Read the capture
+            ret, frame = video.read()
+            # Pass the Frame to the Classifier
+            bodies = body_cascade.detectMultiScale(frame, 1.2, 3)
+            # if Statement
+            if ret == True:
+                # Bound Boxes to Identified Bodies
+                for (x, y, w, h) in bodies:
+                    cv2.rectangle(frame, (x, y), (x + w, y + h), (25, 125, 225), 5)
+                    cv2.imshow('Video Playing', frame)
+                # Exit with Esc button
+                if cv2.waitKey(1) == 27:
+                    break
+            # else Statement
+            else:
+                break
+        # Release the Capture & Destroy All Windows
+        video.release()
+        cv2.destroyAllWindows()
