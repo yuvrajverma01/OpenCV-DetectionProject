@@ -33,11 +33,11 @@ else:
     path = input("Enter name of the file (add .mp4 after the name): ")
 
 # Face Classifier
-face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
+face_cascade = cv2.CascadeClassifier(cv2.data.cascades + 'cascade_frontalface_default.xml')
 # Eye Classifier
-eye_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_eye.xml')
+eye_cascade = cv2.CascadeClassifier(cv2.data.cascades + 'cascade_eye.xml')
 # Body Classifier
-body_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_fullbody.xml')
+body_cascade = cv2.CascadeClassifier(cv2.data.cascades + 'cascade_fullbody.xml')
 
 if type_of_file == 1:
     if type_of_det == 1:
