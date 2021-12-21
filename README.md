@@ -10,7 +10,7 @@
   
 </div>
 
-![](/media/skills.png)
+![](/media/2.PNG)
 
 ## 🤷🏼‍♂️ About This Project
 
@@ -80,6 +80,8 @@ OpenCV-DetectionProject
     └── haarcascade_car.xml
 
 ```
+
+![](/media/1.PNG)
 
 ## ❤  About Me
 Made with ❤  by [Yuvraj Verma.](https://www.linkedin.com/in/yuvrajverma01/)
