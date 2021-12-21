@@ -10,10 +10,6 @@
   
 </div>
 
-![](/media/2.PNG)
-
-## 🤷🏼‍♂️ About This Project
-
 Recently, I've been working on a face😀, eye👁 and body🚶 detection it is finally working!🕺
 The source codes basically uses a image, video or the camera as user input and displays the type of detection desired by the user.
 
@@ -24,6 +20,8 @@ The source codes basically uses a image, video or the camera as user input and d
 
 👨‍🏫 Also, I'd like to clearly state it:
 This is not something new, it has already been implemented years ago and even open sourced. I just stitched the pieces of several codes together and altered it to what I wanted to detect.
+
+![](/media/2.PNG)
 
 ## ⚡ TechStack Used
 
