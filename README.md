@@ -10,6 +10,8 @@
   
 </div>
 
+![](/media/skills.png)
+
 ## 🤷🏼‍♂️ About This Project
 
 Recently, I've been working on a face😀, eye👁 and body🚶 detection it is finally working!🕺
@@ -40,19 +42,38 @@ This section lists all the technologies that I used to built this project.
    ```sh
    $ git clone https://github.com/yuvrajverma01/OpenCV-DetectionProject.git
    ```
-2. Initialise a Jupyter Notebook
+2. Install Numpy
    ```sh
-   $ juyter
+   $ pip install numpy
    ```
-3. Run the `Code` file
-
+3. Install Matplotlib
+   ```sh
+   $ pip install matplotlib
+   ```
+4. Install OpenCV
+   ```sh
+   $ pip install opencv-python
+   ```
+5. Install Jupyter Notebook
+   ```sh
+   $ pip install notebook
+   ```
+6. Initialise Jupyter Notebook
+   ```sh
+   $ jupyter-notebook
+   ```
+7. Run `Codeinjupyter` file
+8. 
 ## 📁 File Structure
 
 The file structure of the current project is structured as shown below:
 
 ```
 OpenCV-DetectionProject
-    ├── Code
+    ├── Images
+    ├── Video
+    ├── Code.py
+    ├── Codeinjupyter.ipynb
     ├── cascade_eye.xml
     ├── cascade_frontalface_default.xml
     ├── cascade_fullbody.xml
